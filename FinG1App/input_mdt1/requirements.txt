@@ -1,2 +1,5 @@
 yfinance
-pymongo
+pandas
+requests
+graphyte
+pika

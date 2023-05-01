@@ -1,13 +1,19 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    volumes:
-      - /tmp/app1/mongo_data:/data/db
+  graphite:
+    image: graphiteapp/graphite-statsd
+    restart: always
+    container_name: graphite
     ports:
-      - "27017:27017"
+      - "8011:80"
+      - "2003-2004:2003-2004"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
+    volumes:
+      - /tmp/app1/graphite-config:/opt/graphite/conf
+      - /tmp/app1/graphite-data:/opt/graphite/storage
     networks:
       - ticker_network
 
@@ -17,10 +23,23 @@ services:
     networks:
       - ticker_network
     depends_on:
-      - mongo
+      - rabbitmq
+
+  data_handler_caxl:
+    build: ./handl_caxl1
+    restart: always
+    container_name: data_handler_caxl
+    networks:
+      - ticker_network
+    depends_on:
+      - graphite
+      - rabbitmq
+    environment:
+      GRAPHITE_URL: "http://graphite:8011"
 
   grafana:
     build: ./output_grafana1
+    restart: always
     container_name: grafana
     ports:
       - "3000:3000"
@@ -31,7 +50,40 @@ services:
     networks:
       - ticker_network
     depends_on:
-      - mongo
+      - graphite
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ticker_network
+
+  jupyterlab:
+    build: ./custom_jupyterlab
+    restart: on-failure
+    ports:
+      - "8888:8888"
+    volumes:
+      - /tmp/app1/jupyter:/home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - CHOWN_HOME=yes
+      - CHOWN_HOME_OPTS=-R
+      - NB_UID=1000
+      - NB_GID=100
+      - GRANT_SUDO=yes
+    networks:
+      - ticker_network
+
 
 networks:
   ticker_network:
