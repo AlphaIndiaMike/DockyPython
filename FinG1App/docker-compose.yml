@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    volumes:
+      - /tmp/app1/mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - ticker_network
+
+  data_fetcher_mdt1:
+    build: ./input_mdt1
+    container_name: data_fetcher_mdt1
+    networks:
+      - ticker_network
+    depends_on:
+      - mongo
+
+  grafana:
+    build: ./output_grafana1
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - /tmp/app1/grafana_data:/var/lib/grafana
+      - ./output_grafana1/provisioning:/etc/grafana/provisioning
+      - ./output_grafana1/config:/etc/grafana/config
+    networks:
+      - ticker_network
+    depends_on:
+      - mongo
+
+networks:
+  ticker_network:
+    name: ticker_network
+    driver: bridge
