@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: always
+    environment:
+      - BIND_ADDRESS=0.0.0.0
+      - PORT=8080
+      - BASE_URL=https://yourdomain.com/  # Update this with your domain
+      - DEBUG=0
+      - SETTINGS_PATH=/etc/searxng/settings.yml
+    #ports:
+    #  - "8012:8080"
+    expose:
+      - "8080"
+    volumes:
+      - /tmp/app2/searxng:/etc/searxng
+    networks:
+      - searxng_net
+
+  filtron:
+    image: dalf/filtron
+    container_name: filtron
+    restart: always
+    environment:
+      - BIND_ADDRESS=0.0.0.0
+      - PORT=4040
+      - API=0.0.0.0:4041
+      - UPSTREAM=searxng:8080
+    expose:
+      - "4040"
+      - "4041"
+    volumes:
+      - /tmp/app2/rules.json:/etc/filtron/rules.json:ro
+    networks:
+      - searxng_net
+
+  morty:
+    image: dalf/morty
+    container_name: morty
+    restart: always
+    environment:
+      - BIND_ADDRESS=0.0.0.0
+      - PORT=3030
+      - KEY=your_morty_key_here
+    expose:
+      - "3030"
+    networks:
+      - searxng_net
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    networks:
+      - searxng_net
+
+networks:
+  searxng_net:
+    driver: bridge
