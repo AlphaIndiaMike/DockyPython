@@ -87,8 +87,8 @@ services:
       - $RULES_FOLDER/$RULES_FILE:/etc/filtron/rules.json
     networks:
       - searxng_net
-    expose:
-      - "8012"
+    ports:
+      - "8012:8012"
 
   morty:
     image: dalf/morty:latest

@@ -21,21 +21,16 @@ services:
       - searxng_net
 
   filtron:
-    image: dalf/filtron
+    image: dalf/filtron:latest
     container_name: filtron
     restart: always
-    environment:
-      - BIND_ADDRESS=0.0.0.0
-      - PORT=4040
-      - API=0.0.0.0:4041
-      - UPSTREAM=searxng:8080
-    expose:
-      - "4040"
-      - "4041"
+    command: -listen 0.0.0.0:8012 -api 0.0.0.0:4041 -rules /etc/filtron/rules.json -target searxng:8080
     volumes:
-      - /tmp/app2/rules.json:/etc/filtron/rules.json:ro
+      - $RULES_FOLDER/$RULES_FILE:/etc/filtron/rules.json
     networks:
       - searxng_net
+    ports:
+      - "8012:8012"
 
   morty:
     image: dalf/morty
