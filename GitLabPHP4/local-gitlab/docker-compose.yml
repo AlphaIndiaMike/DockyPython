@@ -1,0 +1,63 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "8080:80"
+      - "8443:443"
+      - "2222:22"
+    networks:
+      - gitlab-network
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['initial_root_password'] = 'Test1234'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gitlab-network
+  
+  php:
+    image: php:5.6-apache
+    volumes:
+      - ./site1:/var/www/html
+    networks:
+      - gitlab-network
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.site1.rule=Host(`site1.localhost`)"
+  
+  mysql:
+    image: mariadb:10.3
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - gitlab-network
+    
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - gitlab-network
+
+  # traefik:
+  #   image: traefik:v2.0
+  #   ports:
+  #     - "8082:80"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   networks:
+  #     - gitlab-network
+
+networks:
+  gitlab-network:
+    driver: bridge

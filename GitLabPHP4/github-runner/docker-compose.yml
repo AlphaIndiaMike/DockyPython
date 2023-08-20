@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  github-runner:
+    image: myoung34/github-runner:latest
+    container_name: github-runner
+    environment:
+      - REPO_URL=https://github.com/YOUR_USERNAME/YOUR_REPO
+      - RUNNER_TOKEN=YOUR_PERSONAL_ACCESS_TOKEN
+      - RUNNER_NAME=my-runner
+      - RUNNER_WORKDIR=/tmp/github-runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

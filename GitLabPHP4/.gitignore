@@ -1,0 +1,5 @@
+# Ignore the gitlab folder
+/gitlab/
+
+# Ignore the mysql-data folder
+/mysql-data/

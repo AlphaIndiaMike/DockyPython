@@ -1,0 +1,28 @@
+﻿
+/* CONTACT CONTAINER */
+/*div{border:solid 1px green;}*/
+.contact_container{position:relative; top:20px;}
+.gallery_component{width:700px;}
+.address_component{width:295px;}
+.titlu_mare{font-size:14pt; font-weight:bold; padding: 10px;}
+.titlu_mijlociu{font-size:12pt;font-weight:bold;padding: 10px; text-decoration:none;}
+.text_marcat{font-size:10pt;font-weight:bold;padding: 10px;}
+.text_simplu{font-size:10pt;font-weight:normal;padding: 10px; text-decoration:none;}
+.text_italic{font-size:10pt;font-weight:normal;padding: 10px; font-style: italic;}
+.gallery_item{width:345px; height:200px;}
+.gallery_dept{}
+.menu_edit_submitbtn{font-size:12pt; border:none; background-color:transparent; background-image: url('../../../images/save-icon24.png'); width:24px; height:24px; position:relative; margin-right:20px;  cursor:pointer;}
+.menu_edit_addsubbtn{border:none; background-color:transparent; background-image: url('../../../images/add-icon24.png'); width:24px; height:24px; cursor:pointer;}
+
+.dept_list{list-style:circle;}
+.dept_name{ padding:5px; text-decoration: none; color:black; position:relative; top:-3px;}
+.selected_dept {padding:5px; text-decoration: none; color:#003366; position:relative; top:-3px; font-weight:bold;}
+.send{background: #6f9ff1;color: #fff; text-decoration:none; font-weight: 700;font-style: normal; border: 0; width:100px; cursor: pointer;font-size:10pt;padding:5px; padding-left:20px; padding-right:20px;}
+.send:hover{background: #79a7f1;}
+.send_mare{background: #6f9ff1;color: #fff; text-decoration:none; font-weight: 700;font-style: normal; border: 0; width:150px; cursor: pointer;font-size:11pt;padding:5px; position:relative; margin:10px;}
+.send_mare:hover{background: #79a7f1;}
+
+.edit_field{width:200px; border:none; border-bottom:solid 1px black;}
+.featurebox{ background-color: #dfdfdf; padding:10px; border: 1px solid #eee;font-family: verdana, arial, sans-serif;font-size: 11px;line-height: 18px;color: #333333;}
+.featurebox_white{ background-color: #fff; padding:10px; font-size: 11px;line-height: 18px;color: #333333;}
+.image_link{ color:transparent; border:none; text-decoration:none;}

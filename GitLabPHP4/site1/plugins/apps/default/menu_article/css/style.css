@@ -1,0 +1,22 @@
+﻿
+/* MENU_ARTICLE */
+.option{text-decoration: none; cursor:pointer; color:#555; font-size:11pt; padding-left:5px; padding-top:5px; padding-bottom:5px;}
+.selected_option{text-decoration:none; cursor:pointer; color:#003366; font-size:12pt; padding-left:5px; font-weight:bold;}
+.content_art{width:780px; padding-right: 10px;}
+.submenu_list{width:200px;}
+.quad_0{padding:10px; border-left:solid 2px #aaa; border-bottom:solid 2px #aaa; width:180px;}
+.quad_1{padding:12px; width:180px;}
+.quad_2{padding:10px; border-left:solid 2px #aaa; border-top:solid 2px #aaa; width:180px;}
+.menu_edit_submitbtn{font-size:12pt; border:none; background-color:transparent; background-image: url('../../../images/save-icon24.png'); width:24px; height:24px; cursor:pointer;}
+.menu_edit_addsubbtn{border:none; background-color:transparent; background-image: url('../../../images/add-icon24.png'); width:24px; height:24px; cursor:pointer;}
+.menu_edit_textbox{width:120px; border:none; border-bottom:solid 1px black;}
+.small_text{font-size:8pt;}
+
+.content_left{width:280px; height:400px; }
+.content_right{width:500px;}
+.titlu_mare{font-size:14pt; font-weight:bold; padding: 10px;}
+.titlu_mijlociu{font-size:12pt;font-weight:bold;padding: 10px;}
+.text_marcat{font-size:10pt;font-weight:bold;padding: 10px;}
+.text_simplu{font-size:10pt;font-weight:normal;padding: 10px;}
+.menu_article_ul{list-style-position: inside; padding-left:5px;}
+
