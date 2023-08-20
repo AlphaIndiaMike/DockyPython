@@ -10,7 +10,7 @@ function db_name() {return 'revox';}
 //SETUP MAIL
 define("site_mail_address", 'site@revox-systems.ro');
 define("default_recipient", 'dash@revox-systems.ro');
-//define("admin_recipient", 'alexandru.matei@msn.com');
+//define("admin_recipient", '');
 //SETUP MAIL
 //SETUP DIRECTORY PATH
 define("php_extension",".html");
