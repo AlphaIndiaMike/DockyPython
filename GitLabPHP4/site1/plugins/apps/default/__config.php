@@ -22,7 +22,7 @@ for ($i=0; $i<$nopar; $i++){
     //if (file_exists(trim($opt))==true) {include(trim($opt."/".$opt.".php"));echo trim($opt."/".$opt.".php"); }
     if ($opt=='content_slider'){$ctn.=content_slider(get_title(),$header);}
     //Base Article begin 
-    if ($opt=='base_article') {$ctn.=base_Article_link(get_title(),$header,960,300);}
+    if ($opt=='base_article') {$ctn.=base_Article_link(get_title(),$header,960,470);}
     if ($opt=='media_menu') {$ctn.=media_menu(get_title(),$header,940,300);}
     //End Base Article
     if ($opt=='logo_carousel'){$_ctn_free.='<div class="page">'.logo_carousel(get_title(),$header).'</div>';}

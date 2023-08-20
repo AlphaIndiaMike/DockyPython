@@ -8,8 +8,6 @@ services:
     volumes:
       - ./site1:/var/www/html
       - ./webconfig/php.ini:/usr/local/etc/php/php.ini
-      - ./webconfig/custom.conf:/etc/apache2/conf-available/custom.conf
-   # command: bash -c "a2enconf custom && apache2-foreground"
     networks:
       - backend
 
@@ -20,8 +18,6 @@ services:
     volumes:
       - ./site2:/var/www/html
       - ./webconfig/php.ini:/usr/local/etc/php/php.ini
-    #  - ./webconfig/custom.conf:/etc/apache2/conf-available/custom.conf
-    # command: bash -c "a2enconf custom && apache2-foreground"
     networks:
       - backend
 
@@ -43,6 +39,7 @@ services:
     depends_on:
       - site1
       - site2
+      - site3
     networks:
       - backend
 

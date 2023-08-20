@@ -1,0 +1,171 @@
+/* davidreynolds.com based on Siding Doors by Douglas Bowman alistapart.com */
+#query_app{
+    position:relative; top:-40px;
+    width:920px;
+    left:20px;
+}
+
+#tabbed_menu{
+    background-color:transparent;
+    display: block; 
+    height:22px;
+}
+/* davidreynolds.com based on Siding Doors by Douglas Bowman alistapart.com */
+#applist {
+    font: 75% tahoma,arial,serif; 
+	float: left; 
+	width: 100%; 
+	line-height: normal;
+	margin: 0;
+	padding: 0px 0 0 10px;
+}
+#applist ul {
+	padding: 10px 10px 0 0;
+	margin: 0; 
+	list-style-type: none;
+}
+#applist li {
+	padding: 0 0 0 9px;
+	background:   url(left.png) no-repeat left top; 
+	float: left; 
+	margin: 0;
+	list-style-type: none;
+}
+#applist a, #applist span {
+	display: block; 
+
+	font-weight: normal; 
+	background: url(right.png) no-repeat right top; 
+	float: left; 
+	color: #765; 
+	padding: 5px 15px 4px 6px; 
+	text-decoration: none
+}
+#applist a {
+	float: none
+}
+#applist span {
+	color: #CCCCCC}
+#applist a:hover {
+	color: #333
+}
+#applist #active {
+	background-image:   url(left_on.png)}
+#applist #active span {
+	background-image:   url(right_on.png); 
+	padding-bottom: 5px; color: #333
+}
+
+/* CSS for description */
+
+#description {
+    display:block;
+    background-color:#FCFCFE;
+    border:solid 1px #777;
+    
+}
+
+#app_panel{
+    padding:10px;
+    background-color:#FCFCFE;
+}
+
+.mytable{
+    font-size:9pt; color:black;
+    border-right:1px solid #444; width:900px;
+}
+.mytable td{ border:solid 1px #444; border-right:none; border-top:none;}
+.mytable th{ border:solid 1px #444; border-right:none;}
+
+form.formular {
+	font-family: tahoma, verdana, "sans-serif";
+	font-size: 12px;
+	padding: 20px;
+	width: 300px;
+	margin: 0 auto;
+}
+.formular fieldset {
+	margin-top: 20px;
+	padding: 15px;
+	border: 1px solid #B5B8C8;
+}
+
+.formular legend {
+	font-size: 12px;
+	color: #15428B;
+	font-weight: 900;
+}
+
+.formular fieldset label {
+	float: none;
+	text-align: inherit;
+	display:block;
+	width: auto;
+}
+
+.formular label span {
+	color: #000;
+}
+
+.formular input,.formular select,.formular textarea {
+	display: block;  /* this breaks relative positioning */
+	margin-bottom: 5px;
+}
+
+.formular .text-input {
+	width: 290px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular textarea {
+	width: 250px;
+	height: 70px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .infos {
+	background: #FFF;
+	color: #333;
+	font-size: 12px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.formular span.checkbox, .formular .checkbox, .formular .radio {
+	display: inline;
+}
+
+.formular .submit {
+	
+	border: 1px solid #AAA;
+	padding: 4px;
+	margin-top: 20px;
+	float: right;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.formular hr {
+	clear: both;
+	visibility: hidden;
+}
+
+.formular .fc-error {
+	width: 350px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 12px;
+	margin-bottom: 15px;
+	background: #FFEAEA;
+}

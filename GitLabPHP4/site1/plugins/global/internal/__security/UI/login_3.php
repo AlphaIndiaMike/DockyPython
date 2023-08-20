@@ -3,9 +3,9 @@
 function login_form3()
 {
     $ret = '
-    <script type="text/javascript" src="plugins/js/jquery-1.6.4.min.js"></script>
-    <script type="text/javascript" src="plugins/js/jquery.corner.js"></script>
-    <script type="text/javascript" src="plugins/js/SHA.js"></script>
+    <script type="text/javascript" src="'.get_js('jquery-1.6.4.min.js').'"></script>
+    <script type="text/javascript" src="'.get_js('jquery.corner.js').'"></script>
+    <script type="text/javascript" src="'.get_js('SHA.js').'"></script>
     <script type="text/javascript">
     //<![CDATA[
         $(".textbox").corner("5px");

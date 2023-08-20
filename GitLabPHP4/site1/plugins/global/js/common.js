@@ -4,7 +4,7 @@
  * ---------------------------
  */
  //USES
-function mycallbackfunc(v,m,f){
+function mycallbackfunc(e,v,m,f){
 	$.prompt('i clicked ' + v);
 }
 
@@ -32,22 +32,30 @@ var txt2 ='<br/><input type="hidden" id="DeleteID" name="DeleteID" value="'+dele
 return txt+txt2;
 }
 
-function deleteCallback(v,m,f){
+function deleteCallback(e,v,m,f){
     if(v != false){
       location.href="?delete_req="+f.DeleteID;
     }
 }
 
-function callbackfunction(v,m,f)
+function callbackfunction(e,v,m,f)
 {
     if(v != false){
-      location.href="?add="+f.PartID+"&name="+f.PartName+"&uid="+f.CraneID+"&page_catalog="+f.PageNumber;
+        if ((v==2)&&(f.CraneID!=""))
+        {
+            location.href="?add="+f.PartID+"&name="+f.PartName+"&uid="+f.CraneID+"&page_catalog="+f.PageNumber+"&proceed_registration=1";
+        }
+        else{
+            location.href="?add="+f.PartID+"&name="+f.PartName+"&uid="+f.CraneID+"&page_catalog="+f.PageNumber;
+        }
+      
     }
 }
 
-function callbackform(v,m,f){
-	if((v != false)&&(f.CraneID!=""))
-		location.href="?global_ID="+f.CraneID;
+function callbackform(e,v,m,f){
+	if((v != false))
+        if(typeof f != 'undefined') 
+		  location.href="?global_ID="+f.CraneID;
 }
 //BLOWTWARE
 function mycallbackform(v,m,f){
@@ -56,9 +64,9 @@ function mycallbackform(v,m,f){
 }
 
 
-function mysubmitfunc(v,m,f){
+function mysubmitfunc(e,v,m,f){
 	an = m.children('#alertName');
-	if(f.alertName == ""){
+	if(typeof f != 'undefined') {
 		an.css("border","solid #ff0000 1px");
 		return false;
 	}
@@ -90,7 +98,7 @@ var statesdemo = {
 		html:'test 1.<br />test 1..<br />test 1...',
 		buttons: { Cancel: false, Next: true },
 		focus: 1,
-		submit:function(v,m){ 
+		submit:function(e,v,m){ 
 			if(!v) return true;
 			else $.prompt.goToState('state1');//go forward
 			return false; 
@@ -100,7 +108,7 @@ var statesdemo = {
 		html:'test 2',
 		buttons: { Back: -1, Exit: 0 },
 		focus: 1,
-		submit:function(v,m){ 
+		submit:function(e,v,m){ 
 			if(v==0) $.prompt.close()
 			else if(v=-1) $.prompt.goToState('state0');//go back
 			return false; 

@@ -7,16 +7,14 @@ function show_menu($file){
     $file=absolute_path().return_language()."/".$file;
    
     /*Magic that finds out which is the active file to display as menu selected item*/
-    $arr=explode("/",get_title());
-    if (count($arr)==1) $arr=explode("\\",get_title());
-    
+    $arr=explode("\\",get_title());
     if ($arr[count($arr)-1]=="index.html") $arr[count($arr)-1]="default.html";
     $arr2=explode("/",strval($file));
     
-    //if ($arr[count($arr)-1]==$arr2[count($arr2)-1]) $m_h.= '<li class="selected first"><a href="'.$file.'">'."\n";
-    $m_h.= '<a href="'.$file.'" style="color:white; text-decoration:none;">'."\n"; 
+    if ($arr[count($arr)-1]==$arr2[count($arr2)-1]) $m_h.= '<li class="active"><a id="current" href="'.$file.'">'."\n";
+    else $m_h.= '<li><a href="'.$file.'">'."\n"; 
     $m_h.= view_menu(strval($file));
-    $m_h.= '</a>&nbsp;&nbsp;&nbsp;&nbsp;'."\n";
+    $m_h.= '</a></li>'."\n";
     return $m_h;
 }
 
@@ -52,6 +50,10 @@ if (file_exists(absolute_path()."order.nfo"))
 <?php         
 //HERE YOU'LL DEFINE THE MENU BORDERS $menu_html is the menu
 function return_menu($menu_html_){
-   return ''.$menu_html_.'';
+return '<div id="navcontainer">
+            <ul id="navlist">'.
+                 $menu_html_.
+            '</ul>
+        </div>';
 }
 ?>

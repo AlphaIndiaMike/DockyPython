@@ -1,5 +1,17 @@
 <?php
+include ('__rules.php');
+include ('__db_model.php');
+function allow_edit(){
+   if (isset($_SESSION["C_ID"])) return true;
+   if (isset($_SESSION["S_ID"])) return false;
+   return false;
+}
 
+function is_secure(){
+    if (isset($_SESSION["S_ID"])) return true;
+    if (isset($_SESSION["C_ID"])) return true;
+    return false;
+}
 
 function show_security()
 { 
@@ -9,12 +21,12 @@ function show_security()
     if (isset($_SESSION[$rank_name])){
         
         echo '<a class="logininfo">Welcome '.$_SESSION["name"].'!</a>&nbsp;&nbsp;&nbsp;';
-        //echo '<a class="loginbtn" href="account.php">My account</a>&nbsp;&nbsp;&nbsp;';
+       if ($_SESSION["name"]!="Guest") echo '<a class="loginbtn" href="'.href('account.html').'">My account</a>&nbsp;&nbsp;&nbsp;';
         echo '<a class="loginbtn" href="?logout=1">Log_out</a>';
     }
     else{
         echo '
-            <a class="loginbtn" href="'.href('login.html',false).'">Log In</a>
+            <a class="loginbtn" href="'.href('login.html').'">Log In</a>
         ';
     }
 }
@@ -27,7 +39,7 @@ function recover_form(){
             $cmd='';
             $cmd.='<html><body>
             <p><b>Password recovery link from MisiaSpare.ro</b></p>
-            <a href==\"http://www.misiaspare.ro/recover.php?recover_password=='.md5($aproval["mail"]).'" >Send me to password recovery</a>'.
+            <a href==\"http://www.misiaspare.ro/en/recover.html?recover_password=='.md5($aproval["mail"]).'" >Send me to password recovery</a>'.
             '<p>This information is classified, if you didn`t request password recovery please ignore this message and delete it 
             soonest possible.</p>
             </body></html>';
@@ -44,7 +56,7 @@ function recover_form(){
     }
     else
     {
-        $body.='<form method="post" id="customForm" style="height:150px; top:25px; position:relative;" action="?send=1">';
+        $body.='<form method="post" id="customForm" style="height:150px;" action="?send=1">';
         $body.='<div>
     				<label for="email">E-mail:</label>
     				<input id="email" name="email" maxlength="150" type="text" '; if (isset($_POST["email"])) $body.='value="'.$_POST["email"].'"'; $body.='/>
@@ -77,11 +89,11 @@ function change_password_form($id){
                 if($_POST["pass1"]!=$_POST["pass2"]) $er_msg='Passwords don`t match!';
                 else {update_info($usr,null,null,null,null,null,null,null,$_POST["pass2"]);
                     unset($_POST["pass1"]);unset($_POST["pass2"]);
-                    $body.='<script type="text/javascript" language="javascript">alert("Password changed succesfully!"); location.href="index.php";</script>'; 
+                    $body.='<script type="text/javascript" language="javascript">alert("Password changed succesfully!"); location.href="'.href('default.html').'";</script>'; 
                 }
             }
             else $er_msg='Incomplete form or password to short!';
-    }}else {return '<script type="text/javascript">location.href="index.php"</script>';}
+    }}else {return '<script type="text/javascript">location.href="'.href('default.html').'"</script>';}
         
     
     $body.='<div class="featurebox_center" style="width:450px; height:220px; position: relative; top:20px; float:left;">';
@@ -113,51 +125,12 @@ function change_password_form($id){
     return $body;
 }
 
-function login_form()
-{
-    $ret = insert_js('jquery-1.6.4.min.js').insert_js('jquery.corner.js').insert_js('SHA.js').'
-    <script type="text/javascript">
-    //<![CDATA[
-        $(".textbox").corner("5px");
-    //]]>
-    </script>
-    <div style="padding:15px; padding-left:30px; position:relative; font-family:sans-serif, Arial; width:340px; display:inline-block;">
-    
-    <form class="blue_text loginForm" action="?login=1" method="post" onsubmit="javascript:document.getElementById('."'".'pw'."'".').value = SHA1(SHA1(document.getElementById('."'".'password'."'".').value)+ document.getElementById('."'".'dt'."'".').value); document.getElementById('."'".'password'."'".').value ='."'".''."'".';">
-                User: <br/><input type="text" maxlength="100" id="user" name="user" class="textbox"/>&nbsp;&nbsp;<br/><br/>
-                Password: <br/><input type="password" maxlength="100" id="password" name="password" class="textbox"/><br/><br/>
-                <a href="#" class="login_recover" style="color:red;">Va rugam folositi acest formular doar daca aveti datele de autentificare</a>
-                <br/><br/>
-                <input type="submit" value="Log In" class="send" style="width:250px;"/>';
-             $TS = time(); //the current timestamp
-             $ret .= "<input type='hidden' value='".$TS."' name='dt' id='dt'/><br/>";
-             $ret .= '<input type="hidden" name="pw" id="pw" value=""/>     
-            </form>';
-    if (isset($_GET["loginfail"])) $ret .= '<a style="color:red; text-decoration:none; position:relative; top:10px;">Wrong username or password, <br/>please use this form only if you have <br/>proper credentials to use it.</a>';
-    /*$ret .=' 
-    </div>
-        <div class="std blue_text" style="display:inline-block; width:120px; position:relative; top:-120px; padding-left:50px; ">
-            - OR -
-        </div>
-     <div class="std" style="display:inline-block; width:300px; position:relative; top:-70px; padding:10px; ">
-            <p>If you are a partner of MISIA and you don`t have an account, you can create one now and use it to obtain more
-            easy spare parts <b>inquiries</b>.</p><br/>
-            <a href="register.php" style="color:White; margin:0 auto;" class="wiz_fin_btn">Register Now</a>
-        </div>
-    ';*/
-    return $ret;
-}
-
-function has_access($rank_name="S_ID")
-{
-        if (isset($_SESSION[$rank_name])) return true;
-        return false;
-}
+include('UI/login_default.php');
+include('UI/login_3.php');
 
     /*VERIFICARE LOGIN*/
 if (isset($_GET["login"])){
-
-                if ((isset($_POST['user']))&&(isset($_POST['pw']))&&(isset($_POST['dt']))){         
+                if ((isset($_POST['user']))&&(isset($_POST['pw']))&&(isset($_POST['dt']))){ 
                     if ($_REQUEST['pw']!=null){ 
                         $usr = $_REQUEST['user'];
                         $pw = $_REQUEST['pw'];
@@ -165,22 +138,23 @@ if (isset($_GET["login"])){
                         
                         /*DATABASE*/
                         $user=''; $password=''; $rank="S_ID"; 
-                        read_login(absolute_path().'plugins/global/internal/__security/db/login.php',$user,$password);
                         
-                        /*if ($user!=$usr) {
+                        read_login(absolute_path().'plugins/global/internal/db/login.php',$user,$password);
+                        
+                        if ($user!=$usr) {
                             $rank="C_ID"; 
                             $user=$usr;
                             $password=get_loginInfo($usr);
-                        }*/
+                        }
                         /*COMPILE PASS*/
                         $password_locked=sha1($password.$dt);
-    
+                         
                         if(strlen($usr) > 0 && strlen($pw) > 0 && $pw == $password_locked && $user==$usr){
                             $_SESSION[$rank]=$usr;
-                            
+                                                       
                             if (!isset($_SESSION["S_ID"])) $_SESSION["name"]=get_column("partners","mail='".mysql_real_escape_string($user)."'","name");
                             echo '<script type="text/javascript" language="javascript">';
-                            if (isset($_SESSION["create_user"])) echo 'window.location = "proceed.php";'; else echo 'window.location = "index.html";';
+                            if (isset($_SESSION["create_user"])) echo 'window.location = "'.href('proceed.html').'";'; else echo 'window.location = "'.href('default.html').'";';
                             echo '</script>';  
                         }
                         else{

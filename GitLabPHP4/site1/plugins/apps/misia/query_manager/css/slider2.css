@@ -1,0 +1,130 @@
+.menu_insider{height:335px; width:940px; margin:0 auto; position:relative; top:10px; padding-bottom:50px; overflow: hidden;}
+.shadowing{height:335px; width:960px; margin: 0px; top:0px; left:0px;}
+
+.menu_insider2{height:300px; width:940px; margin:0 auto; position:relative; top:10px; padding-bottom:20px; overflow: hidden;}
+.shadowing2{height:3000px; width:960px; margin: 0px; top:0px; left:0px;}
+.menu_insider3{height:150px; width:940px; margin:0 auto; position:relative; top:10px; padding-bottom:20px; overflow: hidden;}
+.shadowing3{height:150px; width:960px; margin: 0px; top:0px; left:0px;}
+
+.box{width:304px; height:335px; float:left; display:inline; margin-right: 14px;}
+.boxy{width:225px; height:283px; float:left; display:inline; margin-right: 14px;}
+.minibox{width:225px; height:142px; float:left; display:inline; margin-right: 14px;}
+.minibox5{width:177px; height:113px; float:left; display:inline; margin-right: 14px;}
+.blu{background-image:url(../images/psiho_fp1.png);}
+.bluy{background-image:url(../images/box_blu.png); }
+.miniblu{background-image:url(../images/minibox_blu.png); }
+.miniblu5{background-image:url(../images/mini.png); }
+.capy{background-image:url(../images/box_shadow_blu.png); }
+.minicap{background-image:url(../images/minibox_shadow_blu.png); }
+.minicap5{background-image:url(../images/mini_shadow.png); }
+.grn{background-image:url(../images/psiho_fp2.png);}
+.org{background-image:url(../images/psiho_fp3.png); margin-right:0px;}
+.boxtitle{color:white; padding:4px; width:294px; height:30px;cursor:default;}
+.boxcontent{padding:6px; width:294px; height:290px;}
+
+.boxytitle{color:white; padding:4px; width:210px; height:45px; cursor:default;}
+.minibox_title{color:white; padding:4px; width:200px; height: 130px;}
+.boxycontent{padding:16px; width:200px; height: 200px; color:white; font-size:10pt;}
+
+.title_number{font-size:36pt; float:left; display:inline; font-weight:bold; padding-left:2px; }
+.title_text{font-size:14pt;float:left; display:inline; position:relative; padding-top:26px; padding-left:4px;}
+
+.box_title_number{font-size:36pt; float:left; position:absolute; z-index:100; font-weight:bold; margin-left:2px;}
+.box_title_text{font-size:14pt; font-weight: bold; float:left; position:absolute; z-index:101; padding-top:26px; margin-left:12px;}
+.number_light{color:#78AEBC;}
+.number_dark{color:#347282;}
+
+.box_text{font-size:10pt;}
+
+.item {width:304px;height:335px;float:left; display:inline; margin-right: 14px;
+/* required to hide the image after resized */
+overflow:hidden;
+/* for child absolute position */
+position:relative;
+/* display div in line */
+float:left;
+}
+
+.item2 {width:225px;height:283px;float:left; display:inline; margin-right: 14px;overflow:hidden;position:relative;float:left;}
+.item3 {width:225px;height:142px;float:left; display:inline; margin-right: 14px;overflow:hidden;position:relative;float:left;}
+.item5 {width:177px;height:113px;float:left; display:inline; margin-right: 14px;overflow:hidden;position:relative;float:left;}
+
+.cap_blu{background-image:url(../images/shadow_blu.png); }
+.cap_grn{background-image:url(../images/shadow_grn.png); }
+.cap_org{background-image:url(../images/shadow_org.png); }
+.item .caption {width:304px;height:335px;
+font-weight:bold;
+/* fix it at the bottom */
+position:absolute;
+left:0;
+/* hide it by default */
+display:none;
+background-repeat:no-repeat;
+/* opacity setting 
+	filter:alpha(opacity=80);    /* ie  
+	-moz-opacity:0.8;    /* old mozilla browser like netscape  
+	-khtml-opacity: 0.8;    /* for really really old safari   
+	opacity: 0.8;    /* css standard, currently it works in most modern browsers like firefox,  */
+}
+
+.item2 .caption_boxy {width:225px;height:283px; z-index:105; font-weight:bold; position:absolute; left:0; display:none; background-repeat:no-repeat;}
+.item3 .caption_mini {width:225px;height:142px; z-index:105; font-weight:bold;position:absolute;left:0;display:none;background-repeat:no-repeat;}
+.item5 .caption_mini {width:177px;height:113px; z-index:105; font-weight:bold;position:absolute;left:0;display:none;background-repeat:no-repeat;}
+
+.item .caption a {text-decoration:none;color:#0cc7dd;font-size:16px; padding:5px;display:block;}
+.item .caption p {padding:5px;	margin:0;font-size:10px;}
+.item2 .caption_boxy a {text-decoration:none;color:#0cc7dd;font-size:16px; padding:5px;display:block;}
+.item2 .caption_boxy p {padding:5px;	margin:0;font-size:10px;}
+.item3 .caption_mini a {text-decoration:none;color:#0cc7dd;font-size:16px; padding:5px;display:block;}
+.item3 .caption_mini p {padding:5px;	margin:0;font-size:10px;}
+.item5 .caption_mini a {text-decoration:none;color:#0cc7dd;font-size:16px; padding:5px;display:block;}
+.item5 .caption_mini p {padding:5px;	margin:0;font-size:10px;}
+
+.clear {clear:both;}
+.caption_insider{background-color:#333; height:40px; position:relative; top:140px; padding-top:10px; padding-left:15px;}
+.caption_insider2{background-color:#333; height:40px; position:relative; top:120px; padding-top:10px; padding-left:15px;}
+.caption_insider3{background-color:#333; height:40px; position:relative; top:50px; padding-top:10px; padding-left:15px;}
+.caption_insider5{background-color:#333; height:40px; position:relative; top:40px; padding-top:0px; padding-bottom:10px; padding-left:15px;}
+
+.item .caption .caption_insider a{font-size: 13pt; color: white; }
+.item2 .caption_boxy .caption_insider2 a{font-size: 13pt; color: white; }
+.item3 .caption_mini .caption_insider3 a{font-size: 13pt; color: white; }
+.item5 .caption_mini .caption_insider5 a{font-size: 13pt; color: white; }
+#title_in{border: solid 1px gray; font-size:18pt; width:300px;}
+
+.boxy_menu_content{width:200px; height:210px;}
+.boxy_menu_title{border:none; border-bottom: solid 1px #eee; background-color:transparent; font-size:14pt; color:white;}
+
+/*tabele*/
+.tray_bar{display:table; width:940px; height:48px}
+.tray_left{ width:10px; height:48px;  display:inline; float:left; background-image:url(../images/stanga.png); background-repeat:no-repeat;}	
+.tray_cnt{ width: 920px; height:48px; background-color:#C9C9C9;  display:inline; float:left; }	
+.tray_right{ width:10px; height:48px; display:inline; float:left;  background-image:url(../images/dreapta.png); background-repeat:no-repeat;}	
+
+/*www*/
+.sep{float:left; display:inline; height:41px; width:1px; background-color:#d4d4d4;}
+.top{ display:block; width:940px; height:41px; color:#efefef; font-weight:bold;}
+.top .stanga{float:left; display:inline; height:41px; width:13px; background-image:url(../images/tabel_st_sus.png);}
+.top .avg{float:left; display:inline; height:41px;  background-color:#717171;}
+.top .dreapta{float:left; display:inline; height:41px; width:13px; background-image:url(../images/tabel_dr_sus.png);}
+.avg1 {font-size:15px; background-color:#FFF; display:block; display: table-row; width:940px; height:41px;}
+.avg2 {font-size:15px; background-color:#DEDEDE;display:block; display: table-row; width:940px; height:41px;}
+
+.avg1 .stanga{float:left; display:inline; height:41px; width:13px; border-left:solid 1px #d4d4d4;}
+.avg1 .avg{float:left; display:inline; height:41px;}
+.avg1 .dreapta{float:left; display:inline; height:41px; width:13px; border-right:solid 1px #d4d4d4;}
+
+.avg2 .stanga{float:left; display:inline; height:41px; width:13px; border-left:solid 1px #d4d4d4;}
+.avg2 .avg{float:left; display:inline; height:41px;}
+.avg2 .dreapta{float:left; display:inline; height:41px; width:13px; border-right:solid 1px #d4d4d4;}
+/*D4D4D4*/
+.bottom {font-size:15px; display:block; width:940px; height:41px;}
+.bottom .stanga{float:left; display:inline; height:41px; width:13px; background-image:url(../images/tabel_dr_jos.png); background-position:bottom;}
+.bottom .avg{float:left; display:inline; height:41px; background-color:#DEDEDE;}
+.bottom .dreapta{float:left; display:inline; height:41px; width:13px; background-image:url(../images/tabel_st_jos.png); background-position:bottom;}
+.avgtext {position:relative; top:12px; left:5px; font-size:11pt;}
+.accordionButton {cursor:pointer;}
+
+/*Continut*/
+.continut ul {padding:0px; position:relative; margin:0px;}
+.continut p {padding:0px; position:relative; margin:0px;}
