@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  site1:
+    build:
+      context: ./webconfig/php-image/
+      dockerfile: Dockerfile
+    volumes:
+      - ./site1:/var/www/html
+      - ./webconfig/php.ini:/usr/local/etc/php/php.ini
+      - ./webconfig/custom.conf:/etc/apache2/conf-available/custom.conf
+   # command: bash -c "a2enconf custom && apache2-foreground"
+    networks:
+      - backend
+
+  site2:
+    build:
+      context: ./webconfig/php-image/
+      dockerfile: Dockerfile
+    volumes:
+      - ./site2:/var/www/html
+      - ./webconfig/php.ini:/usr/local/etc/php/php.ini
+    #  - ./webconfig/custom.conf:/etc/apache2/conf-available/custom.conf
+    # command: bash -c "a2enconf custom && apache2-foreground"
+    networks:
+      - backend
+
+  mariadb:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./webconfig/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - site1
+      - site2
+    networks:
+      - backend
+
+networks:
+  backend:
